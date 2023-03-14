@@ -60,8 +60,8 @@ export default function Home() {
           {isSuccess && <div>added todo</div>}
         </div>
 
-        {data2.map((item, index) => (
-          <SingleCard key={index} id={index} data={item} />
+        {data2.map((item) => (
+          <SingleCard key={item.id} data={item} />
         ))}
       </main>
     </>

@@ -22,7 +22,6 @@ export default function SingleCard(props) {
   function handleChange() {
     setIndex(props.id);
     write?.();
-    setIndex(0);
   }
   return (
     <>

@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 import dynamic from "next/dynamic";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";

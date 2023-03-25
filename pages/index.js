@@ -18,14 +18,9 @@ export default function Home() {
     functionName: "addTodoItem",
     args: [task],
   });
-  const {
-    data,
-    isLoading,
-    isSuccess,
-    write: write1,
-  } = useContractWrite(config);
+  const { isLoading, isSuccess, write } = useContractWrite(config);
 
-  const { data: data2, isSuccess2 } = useContractRead({
+  const { data } = useContractRead({
     address: contractData.address,
     abi: contractData.abi,
     functionName: "getAllTodoItems",
@@ -33,38 +28,38 @@ export default function Home() {
   });
 
   function handleChange() {
-    write1?.();
+    write?.();
     setTask("");
   }
 
-  console.log(data2);
+  console.log(data);
   return (
     <>
-      <div className=" flex flex-col items-center justify-around bg-p-light w-full h-screen px-40">
+      <div className=" flex flex-col items-center justify-around bg-p-light w-full px-40">
         <ConnectButton />
 
-        <p className="font-bold text-p-extra">Input Todo</p>
+        <p className="font-bold text-p-extra m-5">Input Todo</p>
         <input
           type="text"
-          className=" border border-p-extra rounded w-full py-2 px-3 mb-3 text-blue-700"
+          className=" border border-p-extra rounded w-full py-2 px-3 mb-3 text-blue-700 m-5"
           placeholder="Add Todo"
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
 
-        <div className="">
+        <div className=" m-5">
           <button
             className="font-bold bg-p-medium p-4 rounded-full border-b-4 border-r-4 border-p-dark cursor-pointer"
-            disabled={!write1}
+            disabled={!write}
             onClick={handleChange}
           >
             Add Todo
           </button>
           {isLoading && <div>Check Wallet</div>}
-          {isSuccess && <div>added todo</div>}
+          {isSuccess && <div>Added todo</div>}
         </div>
 
-        {data2?.map((item, index) => (
+        {data?.map((item, index) => (
           <SingleCard key={index} id={index} data={item} />
         ))}
       </div>
